@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" /><!-- 
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>TIM-EST PAYMENT</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+          <h5 class="brand-logo">Logo</h5>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li>Sass</li>
+            <li>Components</li>
+            <li>JavaScript</li>
+          </ul>
+        </div>
+    </nav>
+
+
+    <br><br><br><br>
+    <a href="">Ok...Link to be click</a>
+    <br><br><br><br>
+    <form >
+      <script src="https://js.paystack.co/v1/inline.js"></script>
+      <button type="button" onclick="payWithPaystack()" class="btn"> Pay </button> 
+    </form>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.js"></script>
+    <script type="text/javascript" src="js/sweetalert.min.js"></script>
+    <script>
+      function payWithPaystack(){
+        var handler = PaystackPop.setup({
+          key: 'pk_test_627b3212869ed34b3c5dee07082de6ece430cd6a',
+          email: 'customer@email.com',
+          amount: 10000,
+          ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+          metadata: {
+             custom_fields: [
+                {
+                    display_name: "Mobile Number",
+                    variable_name: "mobile_number",
+                    value: "+2348012345678"
+                }
+             ]
+          },
+          callback: function(response){
+              alert('success. transaction ref is ' + response.reference);
+          },
+          onClose: function(){
+              alert('window closed');
+          }
+        });
+        handler.openIframe();
+      }
+    </script>
+</body>
+
+</html>
