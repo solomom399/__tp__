@@ -3,14 +3,14 @@
 
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.tim-est-payment.helloworld"
+        id        = "com.timest-payment.helloworld"
         version   = "1.0.0"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <name>TIM-EST PAYMENT</name>
+    <name>TIMEST PAYMENT</name>
 
     <description>
-        Tim-Est Payment
+        Timest Payment
     </description>
 
     <content src="index.html" />
