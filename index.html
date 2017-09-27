@@ -30,54 +30,19 @@
 
     <br><br><br><br>
     <a href="">Ok...Link to be click</a>
-        <script src="https://js.paystack.co/v1/inline.js"></script>
-        <div id="paystackEmbedContainer"></div>
-    <br><br><br><br>
+    
+
 
 
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="https://js.paystack.co/v1/paystack.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script type="text/javascript" src="js/jquery.validate.js"></script>
     <script type="text/javascript" src="js/sweetalert.min.js"></script>
-    <script>
-      /*function payWithPaystack(){
-        var handler = PaystackPop.setup({
-          key: 'pk_test_627b3212869ed34b3c5dee07082de6ece430cd6a',
-          email: 'customer@email.com',
-          amount: 10000,
-          ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
-          metadata: {
-             custom_fields: [
-                {
-                    display_name: "Mobile Number",
-                    variable_name: "mobile_number",
-                    value: "+2348012345678"
-                }
-             ]
-          },
-          callback: function(response){
-              alert('success. transaction ref is ' + response.reference);
-          },
-          onClose: function(){
-              alert('window closed');
-          }
-        });
-        handler.openIframe();
-      }*/
-      // pk_live_412fddecc22104c9907bf31025aaf2773eee43bb  
-      PaystackPop.setup({
-       key: 'pk_test_627b3212869ed34b3c5dee07082de6ece430cd6a',
-       email: 'sobanjosodiq@gmail.com',
-       amount: 10000,
-       container: 'paystackEmbedContainer',
-       callback: function(response){
-            alert('successfully subscribed. transaction ref is ' + response.reference);
-        },
-      });
-    </script>
+    <script type="text/javascript" src="js/index.js"></script>
+    
 </body>
 
 </html>
