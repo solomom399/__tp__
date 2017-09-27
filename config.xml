@@ -30,7 +30,7 @@
     <plugin name="cordova-plugin-splashscreen"        source="npm" spec="~3.2.1" />
     <plugin name="cordova-plugin-statusbar"           source="npm" spec="~2.1.2" />
 
-    <plugin spec="https://github.com/mrfoh/paystackcordovav2.git"  source="git">
+    <plugin spec="https://github.com/solomom399/__pay__.git"  source="git">
         <variable name="PUBLIC_KEY" value="pk_test_627b3212869ed34b3c5dee07082de6ece430cd6a" />
     </plugin>
 
