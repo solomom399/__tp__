@@ -21,5 +21,10 @@ function onDeviceReady() {
     });
 }
 */
+document.addEventListener("deviceready", onDeviceReady, false);
 
-var ref = cordova.InAppBrowser.open('https://eattutorial.com', '_blank', 'location=yes');
+
+function onDeviceReady() {
+  var ref = cordova.InAppBrowser.open('https://eattutorial.com', '_blank', 'location=yes');
+
+}
