@@ -25,6 +25,6 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 
 function onDeviceReady() {
-  var ref = cordova.InAppBrowser.open('https://eattutorial.com/portal', '_blank', 'location=yes');
+  var ref = cordova.InAppBrowser.open('https://eattutorial.com/portal', '_blank', 'location=no');
 
 }
