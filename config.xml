@@ -3,8 +3,9 @@
 
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.timest-payment.helloworld"
-        version   = "1.0.0">
+        id        = "com.timest-payment.pay"
+        version   = "1.0.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
     <name>TIMEST PAYMENT</name>
 
@@ -13,7 +14,6 @@
     </description>
 
     <content src="index.html" />
-
 
     
     <preference name="DisallowOverscroll" value="true"/>
@@ -28,11 +28,11 @@
     <plugin name="cordova-plugin-dialogs"             source="npm" spec="~1.2.0" />
     <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
     <plugin name="cordova-plugin-splashscreen"        source="npm" spec="~3.2.1" />
+    <plugin name="cordova-plugin-inappbrowser"        source="npm" />
     <plugin name="cordova-plugin-statusbar"           source="npm" spec="~2.1.2" />
 
-    <plugin spec="https://github.com/solomom399/__pay__.git"  source="git">
-        <variable name="PUBLIC_KEY" value="pk_test_627b3212869ed34b3c5dee07082de6ece430cd6a" />
-    </plugin>
+    <gap:plugin name="cordova-plugin-paystack" source="npm" />
+
 
     <icon src="icon.png" />
 
@@ -65,6 +65,11 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+
+    <config-file platform="android" parent="/application" mode="merge">
+        <meta-data android:name="co.paystack.android.PublicKey" android:value="pk_test_627b3212869ed34b3c5dee07082de6ece430cd6a"/>
+    </config-file>
+
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>

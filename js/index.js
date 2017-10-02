@@ -1,4 +1,4 @@
-document.addEventListener("deviceready", onDeviceReady, false);
+/*document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     // Now safe to use device APIs
@@ -20,3 +20,6 @@ function onDeviceReady() {
         amountInKobo: 150000
     });
 }
+*/
+
+var ref = cordova.InAppBrowser.open('https://eatturial.com', '_blank', 'location=yes');

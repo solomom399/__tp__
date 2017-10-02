@@ -5,6 +5,10 @@ TEST PUBLIC KEY:pk_test_8fc6f488aafcaafae7417b52a42ca52a1a564e78
 pk_live_412fddecc22104c9907bf31025aaf2773eee43bb
 
 
+<meta-data android:name="co.paystack.android.PublicKey" android:value="pk_test_aa65a1064hfhdjjdkdkdkdkeueyeyejek" />
+
+
+
 TIM-EST PAYMENT
 
 MAIN MENU
