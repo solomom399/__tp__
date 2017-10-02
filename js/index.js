@@ -22,4 +22,4 @@ function onDeviceReady() {
 }
 */
 
-var ref = cordova.InAppBrowser.open('https://eatturial.com', '_blank', 'location=yes');
+var ref = cordova.InAppBrowser.open('https://eattutorial.com', '_blank', 'location=yes');
