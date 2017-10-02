@@ -3,7 +3,7 @@
 $(".pay").on('submit', function () {
   var name = $(this).find('#name').val()
   var email = $(this).find('#email').val()
-  var amount = $(this).find('#amount').val()
+  var amount = $(this).find('#amount').val()+'00'
 
   pay('http://pay.freshhopesystems.com/?name='+name+'&email='+email+'&amount'+amount)
   return false

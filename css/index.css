@@ -2,8 +2,17 @@
 -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
+body {
+	background: rgba(221, 221, 221, 0.35);
+}
+
 nav {
-    background: #a51c38;
-    box-shadow: none;
-    border-bottom: 3px solid rgba(0,0,0,.2);
+    background: #a51c38 !important;
+    box-shadow: none !important;
+    border-bottom: 3px solid rgba(0,0,0,.2) !important;
+}
+
+.navbar-default .navbar-nav>li>a,
+.navbar-default .navbar-brand {
+	color: #fff;
 }
