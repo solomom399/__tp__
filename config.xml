@@ -31,7 +31,6 @@
     <plugin name="cordova-plugin-inappbrowser"        source="npm" />
     <plugin name="cordova-plugin-statusbar"           source="npm" spec="~2.1.2" />
 
-    <gap:plugin name="cordova-plugin-paystack" source="npm" />
 
 
     <icon src="icon.png" />
@@ -66,9 +65,6 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
 
-    <config-file platform="android" parent="/application" mode="merge">
-        <meta-data android:name="co.paystack.android.PublicKey" android:value="pk_test_627b3212869ed34b3c5dee07082de6ece430cd6a"/>
-    </config-file>
 
     <platform name="android">
         <allow-intent href="market:*" />
