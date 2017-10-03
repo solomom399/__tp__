@@ -5,12 +5,12 @@ $(".pay").on('submit', function () {
   var email = $(this).find('#email').val()
   var amount = $(this).find('#amount').val()+'00'
 
-  pay('http://pay.freshhopesystems.com/?name='+name+'&email='+email+'&amount'+amount)
+  pay('http://pay.freshhopesystems.com/?name='+name+'&email='+email+'&amount='+amount)
   return false
 })
 
 function pay(url) {
-  var ref = cordova.InAppBrowser.open(url, '_blank', 'location=no');
+  var ref = cordova.InAppBrowser.open(url, '_self', 'location=no');
 }
 
 
