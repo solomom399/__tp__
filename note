@@ -8,6 +8,10 @@ pk_live_412fddecc22104c9907bf31025aaf2773eee43bb
 <meta-data android:name="co.paystack.android.PublicKey" android:value="pk_test_aa65a1064hfhdjjdkdkdkdkeueyeyejek" />
 
 
+var name = '<? echo $name; ?>';
+        var email = '<? echo $email; ?>';
+        var amount = '<? echo $amount; ?>';
+
 
 TIM-EST PAYMENT
 

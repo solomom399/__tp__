@@ -11,6 +11,10 @@ $(".pay").on('submit', function () {
 
 function pay(url) {
   var ref = cordova.InAppBrowser.open(url, '_self', 'location=no');
+  ref.executeScript({code: "localSTorage.getItem('ok')", function (data) {
+    if (data == '' || data == null) {
+      ref.close()
+    }
+  }});
 }
-
 
