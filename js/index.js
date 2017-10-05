@@ -62,8 +62,18 @@ function payWithPaystack(name, email, amount, form_object){
 	        ]
 	    },
 	    callback: function(response){
-	    	form_object.trigger('reset')
-	    	$(".pay_load").html('<span style="color: green;"><b>You reference code:</b> '+response.reference+'</span>')
+	    	swal({
+                title: "Successful",
+                text: '<b>You reference code is '+response.reference+'</b>',
+                html: true,
+                type: 'success',
+                confirmButtonClass : 'btn btn-wine'
+            },
+            function () {
+            	window.location = ''
+            })
+	    	// form_object.trigger('reset')
+	    	// $(".pay_load").html('<span style="color: green;"><b>You reference code:</b> '++'</span>')
 	    },
 	    onClose: function(){
 	    	$(".pay_load").html('')
