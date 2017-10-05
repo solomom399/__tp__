@@ -3,7 +3,7 @@
 }
 
 body {
-	background: rgba(221, 221, 221, 0.35);
+	background: rgba(221, 221, 221, 0.05);
 }
 
 nav {
@@ -12,7 +12,412 @@ nav {
     border-bottom: 3px solid rgba(0,0,0,.2) !important;
 }
 
+
+.btn-wine, .btn-wine:hover, .btn-wine:focus {
+	background: #a51c38;
+	color: #fff;
+}
+
 .navbar-default .navbar-nav>li>a,
 .navbar-default .navbar-brand {
 	color: #fff;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+	color: #fff;
+}
+
+
+.side-nav {
+  position: fixed;
+  width: 300px;
+  left: 0;
+  top: 0;
+  margin: 0;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  height: 100%;
+  height: calc(100% + 60px);
+  height: -moz-calc(100%);
+  padding-bottom: 60px;
+  background-color: #fff;
+  z-index: 999;
+  overflow-y: auto;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform: translateX(-105%);
+          transform: translateX(-105%);
+    z-index: 1100;
+}
+
+.side-nav.right-aligned {
+  right: 0;
+  -webkit-transform: translateX(105%);
+          transform: translateX(105%);
+  left: auto;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.side-nav .collapsible {
+  margin: 0;
+}
+
+.side-nav li {
+  float: none;
+  line-height: 48px;
+}
+
+.side-nav li.active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.side-nav li > a {
+  color: rgba(0, 0, 0, 0.87);
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  line-height: 48px;
+  padding: 0 32px;
+}
+
+.side-nav li > a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.side-nav li > a.btn, .side-nav li > a.btn-large, .side-nav li > a.btn-large, .side-nav li > a.btn-flat, .side-nav li > a.btn-floating {
+  margin: 10px 15px;
+}
+
+.side-nav li > a.btn, .side-nav li > a.btn-large, .side-nav li > a.btn-large, .side-nav li > a.btn-floating {
+  color: #fff;
+}
+
+.side-nav li > a.btn-flat {
+  color: #343434;
+}
+
+.side-nav li > a.btn:hover, .side-nav li > a.btn-large:hover, .side-nav li > a.btn-large:hover {
+  background-color: #2bbbad;
+}
+
+.side-nav li > a.btn-floating:hover {
+  background-color: #26a69a;
+}
+
+.side-nav li > a > i,
+.side-nav li > a > [class^="mdi-"], .side-nav li > a li > a > [class*="mdi-"],
+.side-nav li > a > i.material-icons {
+  float: left;
+  height: 48px;
+  line-height: 48px;
+  margin: 0 32px 0 0;
+  width: 24px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.side-nav .divider {
+  margin: 8px 0 0 0;
+}
+
+.side-nav .subheader {
+  cursor: initial;
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 48px;
+}
+
+.side-nav .subheader:hover {
+  background-color: transparent;
+}
+
+.side-nav .user-view,
+.side-nav .userView {
+  position: relative;
+  padding: 32px 32px 0;
+  margin-bottom: 8px;
+  height: 150px;
+}
+
+.side-nav .user-view > a,
+.side-nav .userView > a {
+  height: auto;
+  padding: 0;
+}
+
+.side-nav .user-view > a:hover,
+.side-nav .userView > a:hover {
+  background-color: transparent;
+}
+
+.side-nav .user-view .background,
+.side-nav .userView .background {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.side-nav .user-view .circle, .side-nav .user-view .name, .side-nav .user-view .email,
+.side-nav .userView .circle,
+.side-nav .userView .name,
+.side-nav .userView .email {
+  display: block;
+}
+
+.side-nav .user-view .circle,
+.side-nav .userView .circle {
+  height: 64px;
+  width: 64px;
+}
+
+.side-nav .user-view .name,
+.side-nav .user-view .email,
+.side-nav .userView .name,
+.side-nav .userView .email {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.side-nav .user-view .name,
+.side-nav .userView .name {
+  margin-top: 16px;
+  font-weight: 500;
+}
+
+.side-nav .user-view .email,
+.side-nav .userView .email {
+  padding-bottom: 16px;
+  font-weight: 400;
+}
+
+.drag-target {
+  height: 100%;
+  width: 10px;
+  position: fixed;
+  top: 0;
+  z-index: 998;
+}
+
+.side-nav.fixed {
+  left: 0;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  position: fixed;
+}
+
+.side-nav.fixed.right-aligned {
+  right: 0;
+  left: auto;
+}
+
+@media only screen and (max-width: 992px) {
+  .side-nav.fixed {
+    -webkit-transform: translateX(-105%);
+            transform: translateX(-105%);
+  }
+  .side-nav.fixed.right-aligned {
+    -webkit-transform: translateX(105%);
+            transform: translateX(105%);
+  }
+  .side-nav a {
+    padding: 0 16px;
+  }
+  .side-nav .user-view,
+  .side-nav .userView {
+    padding: 16px 16px 0;
+  }
+}
+
+.side-nav .collapsible-body > ul:not(.collapsible) > li.active,
+.side-nav.fixed .collapsible-body > ul:not(.collapsible) > li.active {
+  background-color: #ee6e73;
+}
+
+.side-nav .collapsible-body > ul:not(.collapsible) > li.active a,
+.side-nav.fixed .collapsible-body > ul:not(.collapsible) > li.active a {
+  color: #fff;
+}
+
+.side-nav .collapsible-body {
+  padding: 0;
+}
+
+#sidenav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+  will-change: opacity;
+}
+
+.waves-effect {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
+  z-index: 1;
+  -webkit-transition: .3s ease-out;
+  transition: .3s ease-out;
+}
+
+
+.waves-effect .waves-ripple {
+  position: absolute;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.7s ease-out;
+  transition: all 0.7s ease-out;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
+  transition-property: transform, opacity;
+  transition-property: transform, opacity, -webkit-transform;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  pointer-events: none;
+}
+
+.waves-effect.waves-light .waves-ripple {
+  background-color: rgba(255, 255, 255, 0.45);
+}
+
+.waves-effect.waves-red .waves-ripple {
+  background-color: rgba(244, 67, 54, 0.7);
+}
+
+.waves-effect.waves-yellow .waves-ripple {
+  background-color: rgba(255, 235, 59, 0.7);
+}
+
+.waves-effect.waves-orange .waves-ripple {
+  background-color: rgba(255, 152, 0, 0.7);
+}
+
+.waves-effect.waves-purple .waves-ripple {
+  background-color: rgba(156, 39, 176, 0.7);
+}
+
+.waves-effect.waves-green .waves-ripple {
+  background-color: rgba(76, 175, 80, 0.7);
+}
+
+.waves-effect.waves-teal .waves-ripple {
+  background-color: rgba(0, 150, 136, 0.7);
+}
+
+.waves-effect input[type="button"], .waves-effect input[type="reset"], .waves-effect input[type="submit"] {
+  border: 0;
+  font-style: normal;
+  font-size: inherit;
+  text-transform: inherit;
+  background: none;
+}
+
+.waves-effect img {
+  position: relative;
+  z-index: -1;
+}
+
+.waves-notransition {
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+
+.waves-circle {
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
+}
+
+.waves-input-wrapper {
+  border-radius: 0.2em;
+  vertical-align: bottom;
+}
+
+.waves-input-wrapper .waves-button-input {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.waves-circle {
+  text-align: center;
+  width: 2.5em;
+  height: 2.5em;
+  line-height: 2.5em;
+  border-radius: 50%;
+  -webkit-mask-image: none;
+}
+
+.waves-block {
+  display: block;
+}
+
+/* Firefox Bug: link not triggered */
+.waves-effect .waves-ripple {
+  z-index: -1;
+}
+
+ul:not(.browser-default)>li {
+    list-style-type: none;
+}
+
+ul:not(.browser-default) {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+a:hover, a:focus {
+	text-decoration: none;
+	outline: 0px !important;
+}
+
+button:focus {
+	outline: 0px !important;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+
+p {
+	margin: 0px;
+}
+
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+[type=text].form-control:focus,
+[type=password].form-control:focus,
+[type=email].form-control:focus,
+[type=tel].form-control:focus,
+[contenteditable].form-control:focus {
+    -webkit-box-shadow: inset 0 -2px 0 #a51c38;
+    box-shadow: inset 0 -2px 0 #a51c38;
 }
