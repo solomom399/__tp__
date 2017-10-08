@@ -12,129 +12,120 @@
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <title>TIM-EST PAYMENT</title>
+    <script type="text/javascript">
+        if (localStorage.getItem('logg') !== null) {
+            window.location = 'data/index.html'
+        }
+    </script>
     <script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
 
-<body>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button  data-activates="slide-out" class="button-collapse navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-scrollspy">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand"> TIMEST PAYMENT</a>
+<body style="background: #a51c38;">
+    <div class="clearfix">
+        <br><br>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in" id="first">
+                <form method="POST" class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 card register-form">
+                    <br><br>
+                    <div class="form-group">
+                        <center><h3>TIMEST PAYMENT</h3></center>
+                        <h5>Register</h5>
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="text" name="firstname" class="form-control" placeholder="First name" required="required">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="lastname" class="form-control" placeholder="Last name" required="required">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Email address" required="required">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Password" required="required">
+                    </div>
+
+
+                    <div class="form-group clearfix">
+                        <button class="waves-effect btn btn-wine pull-left"><i class="ti-lock"></i> REGISTER</button>
+                        <p class="waves-effect pull-right" data-toggle="tab" data-target="#login">Login</p>
+                        <i class="pick-second" data-toggle="tab" data-target="#second"></i>
+                    </div>
+                    <br><br>
+                </form>
             </div>
+
+
+            <div class="tab-pane fade" id="login">
+                <form method="POST" class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 card login-form">
+                    <br><br>
+                    <div class="form-group">
+                        <center><h3>TIMEST PAYMENT</h3></center>
+                        <h5>Login</h5>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control" placeholder="Email address" required="required">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Password" required="required">
+                    </div>
+
+
+                    <div class="form-group clearfix">
+                        <button class="btn btn-wine waves-effect pull-left"><i class="ti-lock"></i> LOGIN</button>
+                        <p class="waves-effect pull-right" data-toggle="tab" data-target="#first">Register</p>
+                    </div>
+                    <br><br>
+                </form>
+            </div>
+
+
+            <div class="tab-pane fade" id="second">
+                <form method="POST" class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 card student-form">
+                    <br><br>
+                    <div class="form-group">
+                        <center><h3>TIMEST PAYMENT</h3></center>
+                        <h5>Add students</h5>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control student-number">
+                            <option value="">How many students</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="parent" class="parent-input">
+                    <div class="students-form-fields">
+                        
+                    </div>
+
+
+                    <div class="form-group clearfix">
+                        <button class="btn btn-wine pull-left"><i class="ti-save"></i> SAVE</button>
+                        <a href="data/index.html" class="btn btn-default pull-right">Skip</a>
+                    </div>
+                    <br><br>
+                </form>
+            </div>
+        
         </div>
-    </nav>
-
-    <ul id="slide-out" class="side-nav">
-        <li>
-            <div class="user-view">
-                <div class="background">
-                    <img src="img/office.jpg">
-                </div>
-            </div>
-        </li>
-        <li price="19000" class="no_prce"><a class="waves-effect" data-toggle="tab" href="#kg_1">KG 1</a></li>
-        <li price="19200" class="no_prce"><a class="waves-effect" data-toggle="tab" href="#kg_2">KG 2</a></li>
-        <li price="19500" class="no_prce"><a class="waves-effect" data-toggle="tab" href="#nur_1">NURSERY 1</a></li>
-        <li price="20000" class="no_prce"><a class="waves-effect" data-toggle="tab" href="#nur_2">NURSERY 2</a></li>
-        <li price="21200" class="no_prce"><a class="waves-effect" data-toggle="tab" href="#year_1">YEAR 1</a></li>
-        <li price="21400" class="no_prce"><a class="waves-effect" data-toggle="tab" href="#year_2">YEAR 2</a></li>
-        <li price="21700" class="no_prce"><a class="waves-effect" data-toggle="tab" href="#year_3">YEAR 3</a></li>
-        <li price="22000" class="no_prce"><a class="waves-effect" data-toggle="tab" href="#year_4">YEAR 4</a></li>
-        <li price="22700" class="no_prce"><a class="waves-effect" data-toggle="tab" href="#year_5">YEAR 5</a></li>
-        <li price="23000" class="no_prce"><a class="waves-effect" data-toggle="tab" href="#year_6">YEAR 6</a></li>
-    </ul>
-
-    <br><br><br>
+    </div>
 
     
-
-
-    <div class="clearfix">
-        <form class="pay col-md-4 col-md-offset-4 col-sm-8 col-sm-offset-2">
-
-            <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade" id="kg_1">
-                    <h3>KG 1</h3>
-                    <p><b>KG 1</b> - 19,000</p>
-                </div>
-
-                <div class="tab-pane fade" id="kg_2">
-                    <h3>KG 2</h3>
-                    <p><b>KG 2</b> - 19,200</p>
-                </div>
-
-                <div class="tab-pane fade" id="nur_1">
-                    <h3>NURSERY 1</h3>
-                    <p><b>Nursery 1</b> - 19,500</p>
-                </div>
-
-                <div class="tab-pane fade" id="nur_2">
-                    <h3>NURSERY 2</h3>
-                    <p><b>Nursery 1</b> - 20,000</p>
-                </div>
-
-                <div class="tab-pane fade" id="year_1">
-                    <h3>YEAR 1</h3>
-                    <p><b>Year 1</b> - 21,200</p>
-                </div>
-
-                <div class="tab-pane fade" id="year_2">
-                    <h3>YEAR 2</h3>
-                    <p><b>Year 2</b> - 21,400</p>
-                </div>
-
-                <div class="tab-pane fade" id="year_3">
-                    <h3>YEAR 3</h3>
-                    <p><b>Year 3</b> - 21,700</p>
-                </div>
-
-                <div class="tab-pane fade" id="year_4">
-                    <h3>YEAR 4</h3>
-                    <p><b>Year 4</b> - 22,000</p>
-                </div>
-
-                <div class="tab-pane fade" id="year_5">
-                    <h3>YEAR 5</h3>
-                    <p><b>Year 5</b> - 22,700</p>
-                </div>
-
-                <div class="tab-pane fade" id="year_6">
-                    <h3>YEAR 6</h3>
-                    <p><b>Year 6</b> - 23,000</p>
-                </div>                
-            </div>
-
-            <p><b>PTA</b> - 1,000</p>
-            <p><b>Graduation Fee</b> - 15,000</p>
-            <p><b>School Event</b> - 6,000</p>
-            <p><b>Day Care</b> - 5,000</p>
-            <p><b>After School</b> - 1,000</p>
-            <p><b>Sportswear - Wednesday</b> - 2,500</p>
-            <p><b>Friday</b> - 2,000</p>
-            <h4 class="total"></h4>
-            <br><br>
-            <div class="form-group">
-                <input type="text" name="name" id="name" class="form-control" placeholder="Full name" required="required">
-            </div>
-
-            <div class="form-group">
-                <input type="email" name="email" id="email" class="form-control" placeholder="Emal address" required="required">
-            </div>
-
-            <div class="form-group">
-                <input type="number" name="amount" readonly="readonly" id="amount" class="form-control" placeholder="Amount" required="required">
-            </div>
-            <button class="btn btn-wine waves-effect">CONTINUE</button>
-            <p class="pay_load"></p>
-        </form>
-    </div>
-    <br>
 
 
     <script type="text/javascript" src="cordova.js"></script>
