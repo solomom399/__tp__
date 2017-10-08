@@ -1,6 +1,6 @@
 
-    // var path = 'https://pay.freshhopesystems.com/'
-    var path = 'http://localhost/__pay/'
+    var path = 'https://pay.freshhopesystems.com/'
+    // var path = 'http://localhost/__pay/'
     var school_key = 'timest_'
 
     var MY = function () {
