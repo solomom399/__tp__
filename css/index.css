@@ -59,7 +59,6 @@ nav {
   height: -moz-calc(100%);
   padding-bottom: 60px;
   background-color: #fff;
-  z-index: 999;
   overflow-y: auto;
   will-change: transform;
   -webkit-backface-visibility: hidden;
@@ -167,7 +166,7 @@ nav {
   position: relative;
   padding: 32px 32px 0;
   margin-bottom: 8px;
-  height: 150px;
+  height: 200px;
 }
 
 .side-nav .user-view > a,
@@ -230,7 +229,7 @@ nav {
   width: 10px;
   position: fixed;
   top: 0;
-  z-index: 998;
+  z-index: 1100;
 }
 
 .side-nav.fixed {
