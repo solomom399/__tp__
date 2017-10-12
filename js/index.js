@@ -1,26 +1,551 @@
-var $jscomp={scope:{},findInternal:function(a,b,c){a instanceof String&&(a=String(a));for(var d=a.length,e=0;e<d;e++){var f=a[e];if(b.call(c,f,e,a))return{i:e,v:f}}return{i:-1,v:void 0}}};$jscomp.defineProperty="function"==typeof Object.defineProperties?Object.defineProperty:function(a,b,c){if(c.get||c.set)throw new TypeError("ES3 does not support getters and setters.");a!=Array.prototype&&a!=Object.prototype&&(a[b]=c.value)};
-$jscomp.getGlobal=function(a){return"undefined"!=typeof window&&window===a?a:"undefined"!=typeof global&&null!=global?global:a};$jscomp.global=$jscomp.getGlobal(this);$jscomp.polyfill=function(a,b,c,d){if(b){c=$jscomp.global;a=a.split(".");for(d=0;d<a.length-1;d++){var e=a[d];e in c||(c[e]={});c=c[e]}a=a[a.length-1];d=c[a];b=b(d);b!=d&&null!=b&&$jscomp.defineProperty(c,a,{configurable:!0,writable:!0,value:b})}};
-$jscomp.polyfill("Array.prototype.find",function(a){return a?a:function(a,c){return $jscomp.findInternal(this,a,c).v}},"es6-impl","es3");
-var path="https://pay.freshhopesystems.com/",school_key="timest_",MY=function(){this.makeUse=function(a,b,c,d){d=void 0===d?null:d;$.ajax({url:path+a,type:"POST",data:b,cache:!1,processData:!1,contentType:!1,dataType:"JSON",success:function(a){c(a)},error:function(a,b,c){d(a,b,c)}})};this.load=function(a){swal({title:'<div class="preloader-wrapper small active"><div class="spinner-layer spinner-red-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div>',text:void 0===
-a?null:a,html:!0,showConfirmButton:!1})};this.onBackKeyDown=function(a){a.preventDefault();confirm("Are you sure you want to exit this app")?navigator.app.exitApp():alert("Enjoy yourself!")};this.offline=function(){$(".all-page-box").html("<br><br><h4><center>No internet connection!</center></h3>")};this.online=function(){$("li[my-page=student]").trigger("click")};this.checkNetwork=function(){navigator.connection.type!==Connection.NONE&&$(".all-page-box").html("<br><br><h4><center>No internet connection!</center></h3>")}},
-my=new MY;document.addEventListener("backbutton",my.onBackKeyDown,!1);document.addEventListener("offline",my.offline,!1);document.addEventListener("online",my.online,!1);
-function payWithPaystack(a,b,c,d){PaystackPop.setup({key:"pk_test_627b3212869ed34b3c5dee07082de6ece430cd6a",email:b,amount:c,ref:""+Math.floor(1E9*Math.random()+1),metadata:{custom_fields:[{display_name:"Fullname",variable_name:"name",value:a}]},callback:function(a){$.ajax({url:path+"user/payment.html",type:"POST",data:$("body").find(".pay").serialize()+"&school_key="+school_key+"&ref_code="+a.reference,cache:!1,dataType:"JSON",success:function(b){"error"!=b.status?swal({title:"Successful",text:"<b>You reference code is "+
-a.reference+"</b>",html:!0,type:"success",confirmButtonClass:"btn btn-wine"},function(){window.location=""}):swal({title:"",text:"<h5>"+b.text+"</h5>",html:!0,type:"warning",confirmButtonClass:"btn btn-danger"})},error:function(a,b,c){swal({title:"",text:"Something went wrong",html:!0,type:"warning",confirmButtonClass:"btn btn-danger"})}})},onClose:function(){$(".pay_load").html("")}}).openIframe()}
-Number.prototype.formatMoney=function(a,b,c){var d=this;a=isNaN(a=Math.abs(a))?2:a;b=void 0==b?".":b;c=void 0==c?",":c;var e=0>d?"-":"",f=String(parseInt(d=Math.abs(Number(d)||0).toFixed(a))),g=3<(g=f.length)?g%3:0;return e+(g?f.substr(0,g)+c:"")+f.substr(g).replace(/(\d{3})(?=\d)/g,"$1"+c)+(a?b+Math.abs(d-f).toFixed(a).slice(2):"")};$(".button-collapse").sideNav({edge:"left",closeOnClick:!0,draggable:!0});
-$(".register-form").validate({highlight:function(a){$(a).closest(".form-group").addClass("has-error")},unhighlight:function(a){$(a).closest(".form-group").removeClass("has-error")},errorElement:"span",errorClass:"help-block",errorPlacement:function(a,b){b.parent(".input-group").length?a.insertAfter(b.parent()):a.insertAfter(b)},submitHandler:function(a){my.load("Processing...");a=new FormData(a);a.append("school_key",school_key);my.makeUse("user/register.html",a,function(a){"error"!=a.status?(swal({title:"<h4>"+
-a.text+"</h4>",text:"",html:!0,type:"success",confirmButtonClass:"btn btn-success"}),$(".parent-input").val(a.iid),$(".register-form").trigger("reset"),$(".pick-second").trigger("click"),localStorage.setItem("logg",!0),localStorage.setItem("user_details",JSON.stringify(a.user_details))):swal({title:"",text:"<h5>"+a.text+"</h5>",html:!0,type:"warning",confirmButtonClass:"btn btn-danger"})},function(a,c,d){swal({title:"",text:"Something went wrong",html:!0,type:"warning",confirmButtonClass:"btn btn-danger"})});
-return!1}});
-$(".login-form").validate({highlight:function(a){$(a).closest(".form-group").addClass("has-error")},unhighlight:function(a){$(a).closest(".form-group").removeClass("has-error")},errorElement:"span",errorClass:"help-block",errorPlacement:function(a,b){b.parent(".input-group").length?a.insertAfter(b.parent()):a.insertAfter(b)},submitHandler:function(a){my.load("Processing...");a=new FormData(a);a.append("school_key",school_key);my.makeUse("user/login.html",a,function(a){"error"!=a.status?(localStorage.setItem("logg",
-!0),localStorage.setItem("user_details",JSON.stringify(a.text)),window.location="data/index.html"):swal({title:"",text:"<h5>"+a.text+"</h5>",html:!0,type:"warning",confirmButtonClass:"btn btn-danger"})},function(a,c,d){swal({title:"",text:"Something went wrong",html:!0,type:"warning",confirmButtonClass:"btn btn-danger"})});return!1}});
-function add_student(a){a=void 0===a?!0:a;$("body").find(".student-form").validate({highlight:function(a){$(a).closest(".form-group").addClass("has-error")},unhighlight:function(a){$(a).closest(".form-group").removeClass("has-error")},errorElement:"span",errorClass:"help-block",errorPlacement:function(a,c){c.parent(".input-group").length?a.insertAfter(c.parent()):a.insertAfter(c)},submitHandler:function(b){my.load("Processing...");b=new FormData(b);b.append("school_key",school_key);my.makeUse("user/add-student.html",
-b,function(b){"error"!=b.status?swal({title:"",text:"<h5>"+b.text+"</h5>",html:!0,type:"success",confirmButtonClass:"btn btn-success"},function(){$(".student-form").trigger("reset");1==a&&(window.location="data/index.html")}):swal({title:"",text:"<h5>"+b.text+"</h5>",html:!0,type:"warning",confirmButtonClass:"btn btn-danger"})},function(a,b,e){swal({title:"",text:"Something went wrong",html:!0,type:"warning",confirmButtonClass:"btn btn-danger"})});return!1}})}add_student();
-function my_account(){var a=JSON.parse(localStorage.getItem("user_details"));$("body").find(".firstname").html('<i class="ti-user"></i> Firstname: '+a.firstname);$("body").find(".lastname").html('<i class="ti-user"></i> Lastname: '+a.lastname);$("body").find(".email").html('<i class="ti-inbox"></i> '+a.email)}
-$("body").on("click",".rl",function(){$(".all-page-box").html('<div class="col-md-12"><div class="preloader-wrapper small active"><div class="spinner-layer spinner-red-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></div>');if(null!=localStorage.getItem("user_details"))var a=JSON.parse(localStorage.getItem("user_details"));var b=$(this).attr("my-page"),
-c=$(this).attr("my-class"),d=$(this).attr("my-fullname");$(".all-page-box").load(b+".html",function(){swal.close();$(".rl").sideNav("hide");"class"===b?$.post(path+"user/get_s_class.html",{school_key:school_key,class_name:c},function(b,f,g){f="<tr><th>Type</th><th>Amount</th></tr>";g="Class fee;PTA;Graduation Fee;School Event;Day Care;After School;Sportswear - Wednesday;Friday".split(";");var e=0;$(".class_name").html("Class name: "+b.class_name);$(".student_name").html("Student: "+d);$("input[name=name]").val(a.firstname+
-" "+a.lastname);$("input[name=email]").val(a.email);$("input[name=parent_id]").val(a.id);$("input[name=class_name]").val(c);$("input[name=student_name]").val(d);for(var h in b)if(e<g.length){if("id"!=h||"class_name"!=h)f+="<tr><th>"+g[e]+"</th><td>"+b[h]+'</td><td><input type="checkbox" class="fee_type" data-v="'+b[h]+'" name="'+h+'" value="'+g[e]+'"></td></tr>';e++}$(".getclassinfo").html(f);$("body").on("submit",".pay",function(){my.load("Loading payment form...");var a=$(this).find("#name").val(),
-b=$(this).find("#email").val(),c=$(this).find("#amount").val()+"00",d=new FormData($(this));payWithPaystack(a,b,c,d);return!1})},"json"):"account"===b?my_account():"student"===b?list_student():"add-student"===b&&($(".parent-input").val(a.id),add_student(!1))})});$("body").on("click","input[class=fee_type]",function(){var a=0;$(this).is(":checked");$("input[class=fee_type]:checked").each(function(){a+=parseInt($(this).attr("data-v"))});$(".total_to_pay").html("N"+a.formatMoney(2,".",","));$("input[name=amount]").val(a)});
-var gClass;function lc(a){var b,c;for(c in a.text){var d=a.text[c];b+='<option value="'+d.class_name+'">'+d.class_name+"</option>"}return b}$.post(path+"user/list-class.html",{school_key:school_key},function(a,b,c){gClass=a},"json");
-function list_student(){if(null!=localStorage.getItem("user_details")){my.load("Loading students...");var a=JSON.parse(localStorage.getItem("user_details"));$.post(path+"user/get-student.html",{school_key:school_key,id:a.id},function(a,c,d){if(""!=a){$("body").find(".short-note").html("You have "+a.length+" students");c='<p class="my-panel-heading"> All students </p>';for(var b in a)d=a[b],c+='<p my-fullname="'+d.fullname+'" my-class="'+d["class"]+'" my-page="class" class="rl waves-effect my-panel-body list-group-item"><span><b>Full name: '+
-d.fullname+"</b></span><br><span>Class: "+d["class"]+"</span></p>";swal.close()}else c='<br><br><center><h4>No student !</h4><p><button my-page="add-student" class="rl btn btn-wine">Add students</button></p></center><br><br>';$("body").find(".list-student").html(c)},"json")}}list_student();
-$("body").on("change",".student-number",function(){for(var a=$(this).val(),b="",c=0;c<a;c++)b+="<p>Student "+(c+1)+'</p><div class="form-group"><input type="text" name="fullname[]" class="form-control" placeholder="Student full name" required="required"></div><div class="form-group"><select name="class[]" class="form-control" required="required"><option value="">Select class</option>'+lc(gClass)+"</select></div>";$(".students-form-fields").html(b)});
-$(".logout").on("click",function(){localStorage.removeItem("logg");localStorage.removeItem("user_details");window.location="../index.html"});
+
+    // var path = 'https://pay.freshhopesystems.com/'
+    var path = 'http://localhost/__pay/'
+    var school_key = 'timest_'
+
+    var MY = function () {
+        var self = this
+
+
+        self.makeUse = function (path_url, formData, callback, errorCallback = null) {
+            $.ajax({
+                url: path+path_url,
+                type: "POST",
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                dataType: "JSON",
+                success: function(r) {
+                    callback(r)
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown){
+                    errorCallback(XMLHttpRequest, textStatus, errorThrown)
+                }
+            })
+        }
+
+
+        self.load = function (text = null) {
+            swal({
+                title : '<div class="preloader-wrapper small active">'+
+                        '<div class="spinner-layer spinner-red-only">'+
+                          '<div class="circle-clipper left">'+
+                            '<div class="circle"></div>'+
+                          '</div><div class="gap-patch">'+
+                            '<div class="circle"></div>'+
+                          '</div><div class="circle-clipper right">'+
+                            '<div class="circle"></div>'+
+                          '</div>'+
+                        '</div>'+
+                      '</div>',
+                text : text,
+                html: true,
+                showConfirmButton : false
+            })
+        }
+
+
+        self.onBackKeyDown = function (e) {
+            e.preventDefault();
+            var conf = confirm("Are you sure you want to exit this app")
+            if(conf){
+                navigator.app.exitApp();
+            } else {
+                alert('Enjoy yourself!');
+            }
+        }
+
+
+        self.offline = function () {
+            $(".all-page-box").html("<br><br><h4><center>No internet connection!</center></h3>")
+        }
+
+        self.online = function () {
+            $("li[my-page=student]").trigger('click')
+        }
+
+
+        self.checkNetwork = function () {
+            var networkState = navigator.connection.type;
+
+            if (networkState !== Connection.NONE) {
+                $(".all-page-box").html("<br><br><h4><center>No internet connection!</center></h3>")
+            }
+        }
+    }
+
+    var my = new MY()
+
+    document.addEventListener("backbutton", my.onBackKeyDown, false);
+    document.addEventListener("offline", my.offline, false);
+    document.addEventListener("online", my.online, false);
+    document.addEventListener("deviceready", my.checkNetwork, false);
+/*
+var my = function () {
+  	this.useit;
+
+  	this.pay = function (name, email, amount) {
+	    ref = cordova.InAppBrowser.open('', '_self', 'location=no');
+	    ref.addEventListener('loadstop', function() {
+	        ref.executeScript({code: ""}, payWithPaystack(name, email, amount));
+	    });
+  	}
+}
+*/
+
+
+function payWithPaystack(name, email, amount, form_object){
+            
+    var handler = PaystackPop.setup({
+	    key: 'pk_test_627b3212869ed34b3c5dee07082de6ece430cd6a',
+	    email: email,
+	    amount: amount,
+	    ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+	    metadata: {
+	        custom_fields: [
+	            {
+	                display_name: "Fullname",
+	                variable_name: 'name',
+	                value: name
+	            }
+	        ]
+	    },
+	    callback: function(response){
+
+            /*formData.append('school_key', school_key)
+            formData.append('ref_code', response.reference)*/
+            $.ajax({
+                url: path+'user/payment.html',
+                type: "POST",
+                data: $("body").find('.pay').serialize()+'&school_key='+school_key+'&ref_code='+response.reference,
+                cache: false,
+                dataType: "JSON",
+                success: function(resp) {
+                    if (resp.status != 'error') {
+                        swal({
+                            title: "Successful",
+                            text: '<b>You reference code is '+response.reference+'</b>',
+                            html: true,
+                            type: 'success',
+                            confirmButtonClass : 'btn btn-wine'
+                        },
+                        function () {
+                            window.location = ''
+                        })
+                    } else {
+                        swal({
+                            title: "",
+                            text: '<h5>'+resp.text+'</h5>',
+                            html: true,
+                            type: 'warning',
+                            confirmButtonClass : 'btn btn-danger'
+                        })
+                    }
+                },
+                error: function(a, b, c){
+                    swal({
+                        title: "",
+                        text: 'Something went wrong',
+                        html: true,
+                        type: 'warning',
+                        confirmButtonClass : 'btn btn-danger'
+                    })
+                }
+            })
+	    	
+	    },
+	    onClose: function(){
+	    	$(".pay_load").html('')
+	    }
+    });
+    handler.openIframe();
+}
+
+Number.prototype.formatMoney = function(c, d, t){
+var n = this, 
+    c = isNaN(c = Math.abs(c)) ? 2 : c, 
+    d = d == undefined ? "." : d, 
+    t = t == undefined ? "," : t, 
+    s = n < 0 ? "-" : "", 
+    i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))), 
+    j = (j = i.length) > 3 ? j % 3 : 0;
+   return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+};
+
+$('.button-collapse').sideNav({
+	edge: 'left', // Choose the horizontal origin
+	closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+	draggable: true
+});
+
+
+
+
+
+$(".register-form").validate({
+    
+    highlight: function(element) {
+        $(element).closest('.form-group').addClass('has-error');
+    },
+    unhighlight: function(element) {
+        $(element).closest('.form-group').removeClass('has-error');
+    },
+    errorElement: 'span',
+    errorClass: 'help-block',
+    errorPlacement: function(error, element) {
+        if(element.parent('.input-group').length) {
+            error.insertAfter(element.parent());
+        } else {
+            error.insertAfter(element);
+        }
+    },
+    submitHandler: function (form) {
+        my.load('Processing...')
+        var formData = new FormData(form)
+        formData.append('school_key', school_key)
+        my.makeUse('user/register.html', formData, function (resp) {
+        	if (resp.status != 'error') {
+        		swal({
+	                title: '<h4>'+resp.text+'</h4>',
+	                text: "",
+	                html: true,
+	                type: 'success',
+	                confirmButtonClass : 'btn btn-success'
+	            })
+	            $(".parent-input").val(resp.iid)
+	            $(".register-form").trigger('reset')
+	            $(".pick-second").trigger('click')
+
+	            localStorage.setItem('logg', true)
+	            localStorage.setItem('user_details', JSON.stringify(resp.user_details))
+
+        	} else {
+        		swal({
+	                title: "",
+	                text: '<h5>'+resp.text+'</h5>',
+	                html: true,
+	                type: 'warning',
+	                confirmButtonClass : 'btn btn-danger'
+	            })
+        	}
+        },function (a, b, c) {
+        	swal({
+                title: "",
+                text: 'Something went wrong',
+                html: true,
+                type: 'warning',
+                confirmButtonClass : 'btn btn-danger'
+            })
+        })
+	  	return false
+    }
+})
+
+
+$(".login-form").validate({
+    
+    highlight: function(element) {
+        $(element).closest('.form-group').addClass('has-error');
+    },
+    unhighlight: function(element) {
+        $(element).closest('.form-group').removeClass('has-error');
+    },
+    errorElement: 'span',
+    errorClass: 'help-block',
+    errorPlacement: function(error, element) {
+        if(element.parent('.input-group').length) {
+            error.insertAfter(element.parent());
+        } else {
+            error.insertAfter(element);
+        }
+    },
+    submitHandler: function (form) {
+        my.load('Processing...')
+        var formData = new FormData(form)
+        formData.append('school_key', school_key)
+        my.makeUse('user/login.html', formData, function (resp) {
+        	if (resp.status != 'error') {
+
+	            localStorage.setItem('logg', true)
+	            localStorage.setItem('user_details', JSON.stringify(resp.text))
+	            window.location = 'data/index.html'
+
+        	} else {
+        		swal({
+	                title: "",
+	                text: '<h5>'+resp.text+'</h5>',
+	                html: true,
+	                type: 'warning',
+	                confirmButtonClass : 'btn btn-danger'
+	            })
+        	}
+        },function (a, b, c) {
+        	swal({
+                title: "",
+                text: 'Something went wrong',
+                html: true,
+                type: 'warning',
+                confirmButtonClass : 'btn btn-danger'
+            })
+        })
+	  	return false
+    }
+})
+
+function add_student (al = true) {
+    $("body").find(".student-form").validate({
+    
+        highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) {
+            if(element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        submitHandler: function (form) {
+            my.load('Processing...')
+            var formData = new FormData(form)
+            formData.append('school_key', school_key)
+
+            my.makeUse('user/add-student.html', formData, function (resp) {
+                if (resp.status != 'error') {
+                    swal({
+                        title: "",
+                        text: '<h5>'+resp.text+'</h5>',
+                        html: true,
+                        type: 'success',
+                        confirmButtonClass : 'btn btn-success'
+                    }, function () {
+                        $(".student-form").trigger('reset')
+                        if (al == true) {
+                            window.location = 'data/index.html'
+                        }
+                        
+                    })
+                    
+                } else {
+                    swal({
+                        title: "",
+                        text: '<h5>'+resp.text+'</h5>',
+                        html: true,
+                        type: 'warning',
+                        confirmButtonClass : 'btn btn-danger'
+                    })
+                }
+            },function (a, b, c) {
+                swal({
+                    title: "",
+                    text: 'Something went wrong',
+                    html: true,
+                    type: 'warning',
+                    confirmButtonClass : 'btn btn-danger'
+                })
+            })
+            return false
+        }
+    })
+    
+}
+
+
+add_student()
+
+function my_account () {
+    var user_details = JSON.parse(localStorage.getItem('user_details'))
+    
+    $("body").find('.firstname').html('<i class="ti-user"></i> Firstname: '+user_details.firstname)
+    $("body").find('.lastname').html('<i class="ti-user"></i> Lastname: '+user_details.lastname)
+    $("body").find('.email').html('<i class="ti-inbox"></i> '+user_details.email)
+}
+
+
+
+$("body").on('click', '.rl', function () {
+    
+    $(".all-page-box").html('<div class="col-md-12"><div class="preloader-wrapper small active">'+
+    '<div class="spinner-layer spinner-red-only">'+
+      '<div class="circle-clipper left">'+
+        '<div class="circle"></div>'+
+      '</div><div class="gap-patch">'+
+        '<div class="circle"></div>'+
+      '</div><div class="circle-clipper right">'+
+        '<div class="circle"></div>'+
+      '</div>'+
+    '</div>'+
+  '</div></div>')
+    if (localStorage.getItem('user_details') != null) {
+
+        var user_details = JSON.parse(localStorage.getItem('user_details'))
+    }
+
+	var page = $(this).attr('my-page')
+	var class_name = $(this).attr('my-class')
+    var student_name = $(this).attr('my-fullname')
+	$(".all-page-box").load(page+'.html', function () {
+        swal.close()
+		$(".rl").sideNav('hide')
+		if (page === 'class') {
+			$.post(path+'user/get_s_class.html', {school_key: school_key, class_name: class_name}, function (resp, status, a) {
+				
+				var output = '<tr><th>Type</th><th>Amount</th></tr>'
+				var arr = new Array('Class fee', 'PTA', 'Graduation Fee', 'School Event', 'Day Care', 'After School', 'Sportswear - Wednesday', 'Friday')
+				var t =0
+				$(".class_name").html('Class name: '+resp.class_name)
+                $(".student_name").html('Student: '+student_name)
+                
+                $("input[name=name]").val(user_details.firstname+' '+user_details.lastname)
+                
+                $("input[name=email]").val(user_details.email)
+                $("input[name=parent_id]").val(user_details.id)
+                $("input[name=class_name]").val(class_name)
+                $("input[name=student_name]").val(student_name)
+
+				for (var i in resp) {
+					if (t < arr.length) {
+						if (i != 'id' || i != 'class_name') {
+							output += '<tr><th>'+arr[t]+'</th><td>'+resp[i]+'</td><td><input type="checkbox" class="fee_type" data-v="'+resp[i]+'" name="'+i+'" value="'+resp[i]+'"></td></tr>'
+						}
+						t++
+					}
+				}
+				$(".getclassinfo").html(output)
+                $("body").on('submit', '.pay', function () {
+                    //$(".pay_load").html('Loading payment form...')
+                    my.load('Loading payment form...')
+                    var name = $(this).find('#name').val()
+                    var email = $(this).find('#email').val()
+                    var amount = $(this).find('#amount').val()+'00'
+                    var formData = new FormData($(this))
+                    payWithPaystack(name, email, amount, formData)
+                    return false  
+                })
+			}, 'json')
+
+		} else if (page === 'account') {
+            my_account()
+        } else if (page === 'student') {
+            list_student()
+        } else if (page === 'add-student') {
+            $(".parent-input").val(user_details.id)
+            add_student(false)
+        }
+	})
+})
+
+
+$("body").on('click', 'input[class=fee_type]', function () {
+    var pay = 0.00
+	if ($(this).is(':checked')) {
+		$('input[class=fee_type]:checked').each(function () {
+			pay += parseInt($(this).attr('data-v'))
+		})
+	} else {
+        $('input[class=fee_type]:checked').each(function () {
+            pay += parseInt($(this).attr('data-v'))
+        })
+    }
+    $(".total_to_pay").html('N'+pay.formatMoney(2, '.', ','))
+    $("input[name=amount]").val(pay)
+})
+
+
+var gClass
+
+
+function lc (obj) {
+	var output
+	for (var i in obj.text) {
+    	var hook = obj.text[i]
+    	output += '<option value="'+hook.class_name+'">'+hook.class_name+'</option>'
+    }
+
+    return output
+}
+
+
+
+$.post(path+'user/list-class.html', {school_key: school_key}, function (resp, status, a) {
+	gClass = resp
+	/*var output = '<li>'+
+            '<div class="user-view">'+
+                '<div class="background">'+
+                    '<img src="../img/office.jpg">'+
+                '</div>'+
+            '</div>'+
+        '</li>'
+    for (var i in resp) {
+    	var hook = resp[i]
+    	output += '<li class="rl no_prce" my-id="'+hook.id+'" my-page="class"><span class="waves-effect"><i class="ti-angle-double-right"></i> '+hook.class_name+'</span></li>'
+    }
+
+    $('.load-side-nav').html(output)*/
+}, 'json')
+
+
+function list_student () {
+    if (localStorage.getItem('user_details') != null) {
+        my.load('Loading students...')
+        var user_details = JSON.parse(localStorage.getItem('user_details'))
+
+        $.post(path+'user/get-student.html', {school_key: school_key, id: user_details.id}, function (resp, status, a) {
+            if (resp != '') {
+                $("body").find(".short-note").html('You have '+resp.length+' students')
+                var output = '<p class="my-panel-heading"> All students </p>'
+                for (var i in resp) {
+                    var hook = resp[i]
+                    output += '<p my-fullname="'+hook.fullname+'" my-class="'+hook.class+'" my-page="class" class="rl waves-effect my-panel-body list-group-item">'+
+                        '<span><b>Full name: '+hook.fullname+'</b></span><br>'+
+                        '<span>Class: '+hook.class+'</span>'+
+                    '</p>'
+                }
+                swal.close()
+            } else {
+                var output = '<br><br><center><h4>No student !</h4>'+
+                '<p><button my-page="add-student" class="rl btn btn-wine">Add students</button></p></center><br><br>'
+            }
+            
+            $("body").find(".list-student").html(output)
+        }, 'json')
+    }
+}
+
+
+list_student()
+
+
+
+$("body").on('change', '.student-number', function () {
+	var n = $(this).val()
+	var output = ''
+	for (var i = 0; i < n; i++) {
+		output += '<p>Student '+(i+1)+'</p><div class="form-group">'+
+                '<input type="text" name="fullname[]" class="form-control" placeholder="Student full name" required="required">'+
+            '</div>'+
+
+            '<div class="form-group">'+
+                '<select name="class[]" class="form-control" required="required"><option value="">Select class</option>'+lc(gClass)+'</select>'+
+            '</div>'
+	}
+	$(".students-form-fields").html(output)
+})
+
+
+
+$(".logout").on('click', function () {
+	localStorage.removeItem('logg')
+	localStorage.removeItem('user_details')
+	window.location = '../index.html'
+})
+
+
+
+
