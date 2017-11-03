@@ -1,6 +1,6 @@
 
-    // var path = 'https://pay.freshhopesystems.com/'
-    var path = 'http://localhost/__pay/'
+    var path = 'https://pay.freshhopesystems.com/'
+    // var path = 'http://localhost/__pay/'
     var school_key = 'timest_'
 
     var MY = function () {
@@ -28,7 +28,8 @@
 
         self.load = function (text = null) {
             swal({
-                title : '<div class="preloader-wrapper small active">'+
+                title : '',
+                text : '<div class="preloader-wrapper small active">'+
                         '<div class="spinner-layer spinner-red-only">'+
                           '<div class="circle-clipper left">'+
                             '<div class="circle"></div>'+
@@ -38,8 +39,7 @@
                             '<div class="circle"></div>'+
                           '</div>'+
                         '</div>'+
-                      '</div>',
-                text : text,
+                      '</div> '+text,
                 html: true,
                 showConfirmButton : false
             })
@@ -101,7 +101,7 @@ function payWithPaystack(name, email, amount, form_object){
 	    key: 'pk_test_627b3212869ed34b3c5dee07082de6ece430cd6a',
 	    email: email,
 	    amount: amount,
-	    ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+	    ref: 'TP'+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
 	    metadata: {
 	        custom_fields: [
 	            {
@@ -357,6 +357,89 @@ function add_student (al = true) {
 }
 
 
+function list_payment () {
+    my.load('Processing...')
+    var formData = new FormData()
+    formData.append('school_key', school_key)
+
+    my.makeUse('user/list-payment.html', formData, function (resp) {
+        var output = ''
+        if (resp.status != 'error') {
+            console.log(resp)
+            for (var i in resp.text) {
+                var hook = resp.text[i]
+                var amount = hook.amount
+                output += '<tr>'+
+                    '<td>'+amount+'</td>'+
+                    '<td>'+hook.date_added+'</td>'+
+                    '<td>'+hook.ref_code+'</td>'+
+                '</tr>'
+            }
+
+            $(".payment_list_table").html(output)
+        } else {
+            swal({
+                title: "",
+                text: '<h5>'+resp.text+'</h5>',
+                html: true,
+                type: 'warning',
+                confirmButtonClass : 'btn btn-danger'
+            })
+        }
+    },function (a, b, c) {
+        swal({
+            title: "",
+            text: 'Something went wrong',
+            html: true,
+            type: 'warning',
+            confirmButtonClass : 'btn btn-danger'
+        })
+    })
+}
+
+
+function news () {
+    my.load('Processing...')
+    var formData = new FormData()
+    formData.append('school_key', school_key)
+
+    my.makeUse('user/news.html', formData, function (resp) {
+        var output = ''
+        if (resp.status != 'error') {
+            console.log(resp)
+            var output = ''
+            for (var i in resp.text) {
+                var hook = resp.text[i]
+                output += '<div class="card">'+
+                    '<h5 class="card-title">'+hook.news_title+'</h5>'+
+                    '<p class="justify">'+hook.news_post+'</p>'+
+                    '<p class="clearfix"><span class="pull-right">'+hook.date_added+'</span></p>'+
+                '</div>'
+            }
+            $("body").find(".news").html(output)
+            swal.close()
+        } else {
+            swal({
+                title: "",
+                text: '<h5>'+resp.text+'</h5>',
+                html: true,
+                type: 'warning',
+                confirmButtonClass : 'btn btn-danger'
+            })
+        }
+    },function (a, b, c) {
+        swal({
+            title: "",
+            text: 'Something went wrong',
+            html: true,
+            type: 'warning',
+            confirmButtonClass : 'btn btn-danger'
+        })
+    })
+}
+
+news()
+
 add_student()
 
 function my_account () {
@@ -393,11 +476,15 @@ $("body").on('click', '.rl', function () {
 	$(".all-page-box").load(page+'.html', function () {
         swal.close()
 		$(".rl").sideNav('hide')
-		if (page === 'class') {
+        if (page === 'home') {
+            news()
+            $(".navbar-brand").html('Home')
+        } else if (page === 'class') {
+            $(".navbar-brand").html('Payment')
 			$.post(path+'user/get_s_class.html', {school_key: school_key, class_name: class_name}, function (resp, status, a) {
 				
 				var output = '<tr><th>Type</th><th>Amount</th></tr>'
-				var arr = new Array('Class fee', 'PTA', 'Graduation Fee', 'School Event', 'Day Care', 'After School', 'Sportswear - Wednesday', 'Friday')
+				var arr = new Array('School fee', 'PTA', 'Graduation Fee', 'School Event', 'Day Care', 'After School', 'Sportswear - Wednesday', 'Friday')
 				var t =0
 				$(".class_name").html('Class name: '+resp.class_name)
                 $(".student_name").html('Student: '+student_name)
@@ -413,30 +500,39 @@ $("body").on('click', '.rl', function () {
 					if (t < arr.length) {
 						if (i != 'id' || i != 'class_name') {
 							output += '<tr><th>'+arr[t]+'</th><td>'+resp[i]+'</td><td><input type="checkbox" class="fee_type" data-v="'+resp[i]+'" name="'+i+'" value="'+resp[i]+'"></td></tr>'
+                            var ac = 0
 						}
+                        
 						t++
 					}
 				}
+                output += '<tr><th>Application charges</th><td class="appc">N0.00</td></tr>'
 				$(".getclassinfo").html(output)
                 $("body").on('submit', '.pay', function () {
                     //$(".pay_load").html('Loading payment form...')
                     my.load('Loading payment form...')
                     var name = $(this).find('#name').val()
                     var email = $(this).find('#email').val()
-                    var amount = $(this).find('#amount').val()+'00'
+                    var amount = parseInt($(this).find('#amount').val())+parseInt($(this).find('#app_charges').val())
                     var formData = new FormData($(this))
-                    payWithPaystack(name, email, amount, formData)
+                    payWithPaystack(name, email, amount+'00', formData)
                     return false  
                 })
 			}, 'json')
 
 		} else if (page === 'account') {
             my_account()
+            $(".navbar-brand").html('Account')
         } else if (page === 'student') {
             list_student()
+            $(".navbar-brand").html('Students')
         } else if (page === 'add-student') {
             $(".parent-input").val(user_details.id)
             add_student(false)
+            $(".navbar-brand").html('Add Students')
+        } else if (page === 'payment-history') {
+            list_payment()
+            $(".navbar-brand").html('All Payment')
         }
 	})
 })
@@ -444,16 +540,28 @@ $("body").on('click', '.rl', function () {
 
 $("body").on('click', 'input[class=fee_type]', function () {
     var pay = 0.00
+    var ac = 0.00
 	if ($(this).is(':checked')) {
 		$('input[class=fee_type]:checked').each(function () {
 			pay += parseInt($(this).attr('data-v'))
+            ac += (1/100) * parseInt($(this).attr('data-v'))
 		})
 	} else {
         $('input[class=fee_type]:checked').each(function () {
             pay += parseInt($(this).attr('data-v'))
+            ac += (1/100) * parseInt($(this).attr('data-v'))
         })
     }
-    $(".total_to_pay").html('N'+pay.formatMoney(2, '.', ','))
+
+    if ($('input[class=fee_type]:checked').length === $('input[class=fee_type]').length) {
+        $("input[name=check_all]").val('1')
+    } else {
+        $("input[name=check_all]").val('0')
+    }
+
+    $(".total_to_pay").html('N'+(pay+ac).formatMoney(2, '.', ','))
+    $(".appc").html('N'+ac.formatMoney(2, '.', ','))
+    $("input[name=app_charges]").val(ac)
     $("input[name=amount]").val(pay)
 })
 
@@ -517,10 +625,6 @@ function list_student () {
         }, 'json')
     }
 }
-
-
-list_student()
-
 
 
 $("body").on('change', '.student-number', function () {

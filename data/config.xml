@@ -19,7 +19,7 @@
     <preference name="android-minSdkVersion" value="14"/>
     <preference name="SplashScreenDelay" value="1000"/>
     <preference name="StatusBarOverlaysWebView" value="true" />
-    <preference name="StatusBarBackgroundColor" value="#842135" />
+    <preference name="StatusBarBackgroundColor" value="#a51c38" />
     <preference name="StatusBarStyle" value="blacktranslucent" />
 
     
