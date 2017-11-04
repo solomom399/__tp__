@@ -78,9 +78,9 @@
     var my = new MY()
 
     document.addEventListener("backbutton", my.onBackKeyDown, false);
-    document.addEventListener("offline", my.offline, false);
+    /*document.addEventListener("offline", my.offline, false);
     document.addEventListener("online", my.online, false);
-    document.addEventListener("deviceready", my.checkNetwork, false);
+    document.addEventListener("deviceready", my.checkNetwork, false);*/
 /*
 var my = function () {
   	this.useit;
@@ -406,7 +406,6 @@ function news () {
     my.makeUse('user/news.html', formData, function (resp) {
         var output = ''
         if (resp.status != 'error') {
-            console.log(resp)
             var output = ''
             for (var i in resp.text) {
                 var hook = resp.text[i]
@@ -474,7 +473,7 @@ $("body").on('click', '.rl', function () {
 	var class_name = $(this).attr('my-class')
     var student_name = $(this).attr('my-fullname')
 	$(".all-page-box").load(page+'.html', function () {
-        swal.close()
+        
 		$(".rl").sideNav('hide')
         if (page === 'home') {
             news()
@@ -533,7 +532,12 @@ $("body").on('click', '.rl', function () {
         } else if (page === 'payment-history') {
             list_payment()
             $(".navbar-brand").html('All Payment')
+        } else {
+            news()
+            $(".navbar-brand").html('Home')
         }
+
+        swal.close()
 	})
 })
 
