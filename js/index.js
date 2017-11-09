@@ -365,12 +365,11 @@ function list_payment () {
     my.makeUse('user/list-payment.html', formData, function (resp) {
         var output = ''
         if (resp.status != 'error') {
-            console.log(resp)
             for (var i in resp.text) {
                 var hook = resp.text[i]
                 var amount = hook.amount
                 output += '<tr>'+
-                    '<td>'+amount+'</td>'+
+                    '<td>N'+parseInt(amount).formatMoney(2, '.', ',')+'</td>'+
                     '<td>'+hook.date_added+'</td>'+
                     '<td>'+hook.ref_code+'</td>'+
                 '</tr>'
